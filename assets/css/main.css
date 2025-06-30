@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dim-50: oklch(0.6862 0.1521 259.62);
+  --color-dim-100: oklch(0.6862 0.1521 259.62);
+  --color-dim-200: oklch(0.3795 0.022 240.59);
+  --color-dim-300: oklch(0.294 0.029 244.88);
+  --color-dim-400: oklch(0.3148 0.0314 248.86);
+  --color-dim-500: oklch(0.6862 0.1521 259.62);
+  --color-dim-600: oklch(0.6862 0.1521 259.62);
+  --color-dim-700: oklch(0.2663 0.0311 247.22);
+  --color-dim-800: oklch(0.288 0.0455 245.23);
+  --color-dim-900: oklch(0.2385 0.0264 248.99);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility transition-default {
+  @apply transition duration-300 ease-in-out;
+}
