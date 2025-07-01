@@ -15,7 +15,7 @@ import {
   <div class="flex h-screen flex-col">
     <!-- Logo -->
     <div
-      class="transition-default my-2 w-min rounded-full p-2 hover:bg-blue-50 dark:hover:bg-white/20"
+      class="transition-app-default my-2 w-min rounded-full p-2 hover:bg-blue-50 dark:hover:bg-white/20"
     >
       <NuxtLink to="/">
         <div class="flex h-8 w-8 items-center justify-center">

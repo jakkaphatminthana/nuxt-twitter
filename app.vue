@@ -15,8 +15,18 @@ const darkMode = ref(true);
               <SidebarLeft />
             </div>
           </div>
-          <div class="bg-blue-500">B</div>
-          <div class="bg-green-500">C</div>
+
+          <!-- Main -->
+          <div class="col-span-12 bg-blue-500 md:col-span-8 xl:col-span-6">
+            B
+          </div>
+
+          <!-- Right sidebar -->
+          <div class="hidden bg-green-500 md:col-span-3 md:block xl:col-span-4">
+            <div class="sticky top-0">
+              <SidebarRight />
+            </div>
+          </div>
         </div>
       </div>
     </div>

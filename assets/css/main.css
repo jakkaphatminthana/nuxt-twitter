@@ -15,6 +15,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@utility transition-default {
+@utility transition-app-default {
   @apply transition duration-300 ease-in-out;
+}
+
+@utility border-app-color {
+  @apply border-gray-100 dark:border-gray-700;
 }
