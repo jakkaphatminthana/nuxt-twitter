@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
-import { sendError } from 'h3';
 import { createUser, getUserByUsername } from '~/server/services/user.service';
 import { userTransform } from '~/server/transforms/user.transform';
+import { throwBadRequest, throwInternalServerError } from '~/server/utils/error';
 
 export default defineEventHandler(async (event) => {
   try {
@@ -10,24 +10,12 @@ export default defineEventHandler(async (event) => {
 
     // Validate required fields
     if (!username || !email || !password || !repeatPassword || !name) {
-      return sendError(
-        event,
-        createError({
-          statusCode: 400,
-          statusMessage: 'Missing required fields',
-        }),
-      );
+      return throwBadRequest(event, 'Missing required fields');
     }
 
     // Validate password match
     if (password !== repeatPassword) {
-      return sendError(
-        event,
-        createError({
-          statusCode: 400,
-          statusMessage: 'Passwords do not match',
-        }),
-      );
+      return throwBadRequest(event, 'Passwords do not match');
     }
 
     // Validate has alreay user
