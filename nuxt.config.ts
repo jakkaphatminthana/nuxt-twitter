@@ -12,5 +12,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     jwtAccessTokenSecret: '',
     jwtRefreshTokenSecret: '',
+    public: {
+      nodeEnv: 'development',
+    },
   },
 });
