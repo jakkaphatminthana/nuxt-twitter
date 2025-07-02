@@ -1,6 +1,7 @@
-import { Prisma, User } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { sendError } from 'h3';
-import { createUser } from '../db/user';
+import { createUser } from '~/server/services/user.service';
+import { userTransform } from '~/server/transforms/user.transform';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -32,13 +33,13 @@ export default defineEventHandler(async (event) => {
   const userData: Prisma.UserCreateInput = {
     username,
     email,
-    password, //TODO : hash the password before saving
+    password,
     name,
   };
 
   const user = await createUser(userData);
 
   return {
-    data: user,
+    data: userTransform(user),
   };
 });
