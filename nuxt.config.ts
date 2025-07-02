@@ -9,4 +9,8 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   modules: ['@nuxt/eslint', '@prisma/nuxt'],
+  runtimeConfig: {
+    jwtAccessTokenSecret: '',
+    jwtRefreshTokenSecret: '',
+  },
 });
