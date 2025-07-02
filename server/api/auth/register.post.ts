@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
 import { sendError } from 'h3';
-import { createUser } from '~/server/services/user.service';
+import { createUser, getUserByUsername } from '~/server/services/user.service';
 import { userTransform } from '~/server/transforms/user.transform';
 
 export default defineEventHandler(async (event) => {
@@ -28,6 +28,12 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Passwords do not match',
       }),
     );
+  }
+
+  // Validate has alreay user
+  const existsUser = await getUserByUsername(username);
+  if (!!existsUser) {
+    return throwBadRequest(event, 'User already exists');
   }
 
   const userData: Prisma.UserCreateInput = {
