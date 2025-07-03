@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  modules: ['@nuxt/eslint', '@prisma/nuxt'],
+  modules: ['@nuxt/eslint', '@prisma/nuxt', '@pinia/nuxt'],
   runtimeConfig: {
     jwtAccessTokenSecret: '',
     jwtRefreshTokenSecret: '',
