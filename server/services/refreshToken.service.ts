@@ -13,3 +13,9 @@ export const createRefreshToken = ({ token, userId }: RefreshTokenReq) => {
     },
   });
 };
+
+export const getRefreshTokenByToken = (token: string) => {
+  return prisma.refreshToken.findUnique({
+    where: { token: token },
+  });
+};

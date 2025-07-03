@@ -37,3 +37,13 @@ export const sendRefreshToken = (event: H3Event, token: string) => {
     secure: config.public.nodeEnv === 'production',
   });
 };
+
+export const decodeRefreshToken = (token: string) => {
+  const config = useRuntimeConfig();
+
+  try {
+    return jwt.verify(token, config.jwtRefreshTokenSecret);
+  } catch (error) {
+    return null;
+  }
+};
