@@ -1,6 +1,7 @@
 // stores/auth.ts
 import { defineStore } from 'pinia';
-import type { LoginReqest, User, UserPreview } from '~/types/auth.types';
+import { authLogin } from '~/services/auth';
+import type { LoginReqest, UserPreview } from '~/types/auth.types';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -17,21 +18,11 @@ export const useAuthStore = defineStore('auth', {
       this.user = newUser;
     },
 
-    async login({ username, password }: LoginReqest) {
+    async login({ username, password }: LoginReqest): Promise<boolean> {
       try {
-        const response = await $fetch('/api/auth/login', {
-          method: 'POST',
-          body: { username, password },
-        });
-
-        console.log('response = ', response.data);
-
-        this.setToken(response.data.access_token);
-        this.setUser(response.data.user as UserPreview);
-
-        console.log('token = ', this.token);
-        console.log('user = ', this.user);
-
+        const response = await authLogin({ username, password });
+        this.setToken(response.access_token);
+        this.setUser(response.user as UserPreview);
         return true;
       } catch (error) {
         throw error;
