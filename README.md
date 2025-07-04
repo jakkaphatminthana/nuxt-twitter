@@ -1,5 +1,9 @@
-# Nuxt Minimal Starter
 
+# 🚧 Project Status
+This project is currently under development.  
+Development Progress: **28% Complete**
+
+# Nuxt Minimal Starter
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
