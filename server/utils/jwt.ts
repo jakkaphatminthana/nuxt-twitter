@@ -47,3 +47,13 @@ export const decodeRefreshToken = (token: string) => {
     return null;
   }
 };
+
+export const decodeAccessToken = (token: string) => {
+  const config = useRuntimeConfig();
+
+  try {
+    return jwt.verify(token, config.jwtAccessTokenSecret);
+  } catch (error) {
+    return null;
+  }
+};
