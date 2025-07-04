@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     jwtRefreshTokenSecret: '',
     public: {
       nodeEnv: 'development',
+      baseUrl: 'http://localhost:3000',
     },
   },
 });

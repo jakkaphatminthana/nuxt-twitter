@@ -1,12 +1,13 @@
 // stores/auth.ts
 import { defineStore } from 'pinia';
-import { authLogin } from '~/services/auth';
+import { authGetUser, authLogin, authRefreshToken } from '~/services/auth';
 import type { LoginReqest, UserPreview } from '~/types/auth.types';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: null as string | null,
     user: null as UserPreview | null,
+    isLoading: false as Boolean,
   }),
 
   actions: {
@@ -17,6 +18,9 @@ export const useAuthStore = defineStore('auth', {
     setUser(newUser: UserPreview) {
       this.user = newUser;
     },
+    setIsLoading(newValue: boolean) {
+      this.isLoading = newValue;
+    },
 
     async login({ username, password }: LoginReqest): Promise<boolean> {
       try {
@@ -26,6 +30,28 @@ export const useAuthStore = defineStore('auth', {
         return true;
       } catch (error) {
         throw error;
+      }
+    },
+
+    async getUser() {
+      try {
+        const response = await authGetUser();
+        this.setUser(response);
+        return true;
+      } catch (error) {
+        throw error;
+      }
+    },
+
+    async initAuth() {
+      try {
+        this.setIsLoading(true);
+        await authRefreshToken();
+        await this.getUser();
+      } catch (error) {
+        throw error;
+      } finally {
+        this.setIsLoading(false);
       }
     },
   },
